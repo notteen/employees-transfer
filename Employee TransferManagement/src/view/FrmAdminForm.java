@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import model.DepartmentBO;
@@ -53,6 +54,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         empID=id;
         this.frmMain=frmmain;
         this.frmLogin=frmlogin;
+        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
     /**
