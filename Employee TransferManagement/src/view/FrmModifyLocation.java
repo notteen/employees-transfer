@@ -70,7 +70,12 @@ public class FrmModifyLocation extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -135,6 +140,7 @@ public class FrmModifyLocation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
+        if(txtLocationName.getText().trim().length()>0){
         Location loc=new Location(locationID,txtLocationName.getText(),txtDescription.getText());
         LocationBO bo=new LocationBO();
         if(modifyMode==add)
@@ -151,20 +157,27 @@ public class FrmModifyLocation extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this,"Edit Location successful");
            this.dispose();
        }
+        }
+        else JOptionPane.showMessageDialog(this,"Location name can not be empty");
     }//GEN-LAST:event_btModifyActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
           int dialogButton = JOptionPane.YES_NO_OPTION;
-       int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to delete this department?","Warning",dialogButton);
+       int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to delete this location?","Warning",dialogButton);
         if(dialogResult == JOptionPane.YES_OPTION){
         LocationBO bo=new LocationBO();
             if(bo.deleteLocation(new int[]{locationID}))
             {
             JOptionPane.showMessageDialog(rootPane, "Delete success!");
-                parent.refresh();
+                parent.refresh();this.dispose();
             }
+            else JOptionPane.showMessageDialog(rootPane, "Delete fail!");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btDeleteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

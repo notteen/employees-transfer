@@ -66,7 +66,12 @@ public class FrmModifyDepartment extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -134,21 +139,26 @@ public class FrmModifyDepartment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-                Department dep=new Department(departmentID,txtDepartmentName.getText(),txtDescription.getText());
+        if(txtDepartmentName.getText().trim().length()>0){
+        Department dep=new Department(departmentID,txtDepartmentName.getText(),txtDescription.getText());
         DepartmentBO bo=new DepartmentBO();
-        if(modifyMode==add)
+        if(modifyMode==add){
          if(bo.insertDepartment(dep))
        {
            parent.refresh();
            JOptionPane.showMessageDialog(this,"Add department successful");
            this.dispose();
-       }
-        if(modifyMode==edit)
+       }else JOptionPane.showMessageDialog(rootPane, "Add fail!");
+        }
+        if(modifyMode==edit){
             if(bo.updateDepartment(dep)){
            parent.refresh();
            JOptionPane.showMessageDialog(this,"Edit department successful");
            this.dispose();
-       }
+       }else JOptionPane.showMessageDialog(rootPane, "Edit fail!");
+        }
+        }
+        else JOptionPane.showMessageDialog(this,"Department name can not be empty");
     }//GEN-LAST:event_btModifyActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
@@ -161,9 +171,14 @@ public class FrmModifyDepartment extends javax.swing.JFrame {
             {
             JOptionPane.showMessageDialog(rootPane, "Delete success!");
                 parent.refresh();
-            }
+                this.dispose();
+            }else JOptionPane.showMessageDialog(rootPane, "Delete fail!");
         }
     }//GEN-LAST:event_btDeleteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

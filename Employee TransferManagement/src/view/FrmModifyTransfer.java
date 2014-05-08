@@ -489,7 +489,7 @@ this.dispose();        // TODO add your handling code here:
             JOptionPane.showMessageDialog(rootPane, "Delete success!");
                 parent.refresh();
                 this.dispose();
-            }
+            }else JOptionPane.showMessageDialog(rootPane, "Delete fail!");
         }  
     }//GEN-LAST:event_btDeleteActionPerformed
 
