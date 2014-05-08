@@ -515,6 +515,9 @@ public class FrmAdminForm extends javax.swing.JFrame {
 
     private void jTabbedPaneAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPaneAdminStateChanged
       jButton2.setVisible(false);
+      cbxSearchType.setVisible(false);
+      txtSearch.setVisible(false);
+      btSearch.setVisible(false);
         if(jTabbedPaneAdmin.getSelectedIndex()==0){
         try {
                     jTableEmployees.setModel(new TableModel(new DataAccess().getEmployee(0)));
@@ -523,6 +526,9 @@ public class FrmAdminForm extends javax.swing.JFrame {
                 }}
          if(jTabbedPaneAdmin.getSelectedIndex()==1){
         try {
+            cbxSearchType.setVisible(true);
+      txtSearch.setVisible(true);
+      btSearch.setVisible(true);
                     jTableTrans.setModel(new TableModel(new DataAccess().getTransfers()));
                 } catch (SQLException ex) {
                     Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -572,17 +578,17 @@ public class FrmAdminForm extends javax.swing.JFrame {
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         String searchType="";
-        String nameSearch="EmployeeName";
-        String locationSearch="LocationName";
-        String projectSearch="ProjectName";
-        String departmentSearch="DepartmentName";
+           String nameSearch="t1.EmployeeName";
+        String locationSearch="t1.TransferFromLocationName";
+        String projectSearch="t1.TransferFromProjectName";
+        String departmentSearch="t1.TransferFromDepartmentName";
         if(cbxSearchType.getSelectedIndex()==1){searchType=nameSearch;}
         if(cbxSearchType.getSelectedIndex()==2){searchType=locationSearch;}
         if(cbxSearchType.getSelectedIndex()==3){searchType=projectSearch;}
         if(cbxSearchType.getSelectedIndex()==4){searchType=departmentSearch;}
         DataAccess da=new DataAccess();
         try {
-            this.jTableEmployees.setModel(new model.TableModel(da.search(searchType, txtSearch.getText().trim())));
+            this.jTableTrans.setModel(new model.TableModel(da.search(searchType, txtSearch.getText().trim())));
         } catch (SQLException ex) {
             Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
         }

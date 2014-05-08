@@ -29,6 +29,7 @@ public class FrmModifyLocation extends javax.swing.JFrame {
         if(modifyMode==add){
         lbLocID.setVisible(false);
         lbLocationID.setVisible(false);
+        btDelete.setVisible(false);
         }
         if(modifyMode==edit){
             btModify.setText("Edit");

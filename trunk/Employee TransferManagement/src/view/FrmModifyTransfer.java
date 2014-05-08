@@ -51,7 +51,7 @@ public class FrmModifyTransfer extends javax.swing.JFrame {
         Vector<Project> prj=prjBO.getProjects();
         Vector<Department> dep=depBO.getDepartments();
         Vector<Location> loc=locBO.getLocations();
-        
+        btDelete.setVisible(false);
         
         cbxFromProject.setModel(new DefaultComboBoxModel(prj));
         cbxFromDepartment.setModel(new DefaultComboBoxModel(dep));
