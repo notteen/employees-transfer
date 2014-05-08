@@ -34,7 +34,7 @@ public class FrmModifyDepartment extends javax.swing.JFrame {
         lbDepartmentID.setText(dep.getDepartmentID()+"");
         txtDepartmentName.setText(dep.getDepartmentName());
         txtDescription.setText(dep.getDescription());}
-        else {lbDepID.setVisible(false);lbDepartmentID.setVisible(false);}
+        else {lbDepID.setVisible(false);lbDepartmentID.setVisible(false);btDelete.setVisible(false);}
     }
 
     /**

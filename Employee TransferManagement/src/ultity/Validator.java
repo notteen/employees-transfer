@@ -43,7 +43,7 @@ public class Validator {
         return email.matches(emailreg);
     }
     
-    public boolean Phone(String phone){
+    public static boolean Phone(String phone){
         String phonereg = "^[0-9]+(\\d{6})$";
         return phone.matches(phonereg);
     }

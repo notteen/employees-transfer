@@ -29,6 +29,7 @@ public class FrmModifyProject extends javax.swing.JFrame {
         if(modifyMode==add){
         lbProjectID.setVisible(false);
         lbprojID.setVisible(false);
+        btDelete.setVisible(false);
         }
         if(modifyMode==edit){
             btModify.setText("Edit");

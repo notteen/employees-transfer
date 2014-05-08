@@ -43,6 +43,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
         this.modifyMode=modifyMode;
         this.employeeID=employeeID;
         if(modifyMode==add){
+            btDelete.setVisible(false);
             lbEmployeeID.setVisible(false);
             lbUserID.setVisible(false);
             lbEmpID.setVisible(false);
@@ -163,7 +164,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
         txtUserName = new javax.swing.JTextField();
         lbUname = new javax.swing.JLabel();
         lbPassword = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btDelete = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -237,10 +238,10 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
 
         lbPassword.setText("Password");
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btDelete.setText("Delete");
+        btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btDeleteActionPerformed(evt);
             }
         });
 
@@ -258,7 +259,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btModify)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(btDelete)
                                 .addGap(2, 2, 2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
@@ -406,7 +407,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btModify)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btDelete))
                 .addContainerGap())
         );
 
@@ -423,7 +424,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxDepartmentActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-        
+        if(validateEmp()){
         Employee emp=new Employee();
         emp.setEmployeeNumber(employeeID);
         emp.setAccount(txtUserName.getText());
@@ -466,10 +467,36 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this,"Update employee successful");
            this.dispose();
        }
-        }
+        }}
     }//GEN-LAST:event_btModifyActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+public boolean validateEmp(){
+    String alertString="";
+    boolean stt=true;
+    if(txtUserName.getText().trim().length()==0&&modifyMode==add)
+    {
+        alertString+="User name can not empty\n";
+        stt=false;
+    }
+    if(txtPassword.getText().trim().length()==0&&modifyMode==add)
+    {
+        alertString+="password can not empty\n";
+        stt=false;
+    }
+    if(txtFirstName.getText().trim().length()==0)
+        {
+        alertString+="first name can not empty\n";
+        stt=false;
+    }
+    if(txtLastName.getText().trim().length()==0)
+        {
+        alertString+="last name can not empty\n";
+        stt=false;
+    }
+    if(!alertString.equals(""))
+    JOptionPane.showMessageDialog(rootPane, alertString);
+    return stt;
+}
+    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
           int dialogButton = JOptionPane.YES_NO_OPTION;
        int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to delete this department?","Warning",dialogButton);
         if(dialogResult == JOptionPane.YES_OPTION){
@@ -484,7 +511,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
                 this.dispose();
             }
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btDeleteActionPerformed
 
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
@@ -541,12 +568,12 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btDelete;
     private javax.swing.JButton btModify;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbxDepartment;
     private javax.swing.JComboBox cbxLocation;
     private javax.swing.JComboBox cbxProject;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JDateChooser jDateChooser1;

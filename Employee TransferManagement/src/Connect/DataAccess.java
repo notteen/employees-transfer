@@ -594,27 +594,46 @@ public class DataAccess {
     }
      public ResultSet search(String type,String value) {
         try {
-            String nameSearch="EmployeeName";
-        String locationSearch="LocationName";
-        String projectSearch="ProjectName";
-        String departmentSearch="DepartmentName";
+             String nameSearch="t1.EmployeeName";
+        String locationSearch="t1.TransferFromLocationName";
+        String projectSearch="t1.TransferFromProjectName";
+        String departmentSearch="t1.TransferFromDepartmentName";
             String query = null;
             if(type.equals("")){
-                query = "SELECT EmployeeNumber,EmployeeName,EmployeeFirstName,DateOfBirth,Sex,Address,PhoneNum,[Role],WorkExperience,Projects.ProjectName CurrentProjectName,Locations.LocationName CurrentLocationName,Departments.DepartmentName CurrentDepartmentName \n" +
-"FROM Employees LEFT OUTER JOIN Projects ON Employees.CurrentProjectID=Projects.ProjectID\n" +
-"LEFT OUTER JOIN Departments ON Employees.CurrentDepartmentID=Departments.DepartmentID\n" +
-"LEFT OUTER JOIN Locations ON Employees.CurrentLocationID=Locations.LocationID\n" +   
- "WHERE "+nameSearch+" like'%"+value+"%'"+" OR "+locationSearch+" like'%"+value+"%'"+" OR "+projectSearch+" like'%"+value+"%'"+" OR "+departmentSearch+" like'%"+value+"%'"+
-"order by EmployeeNumber DESC";
+                query = "SELECT t1.TransferID,t1.EmployeeName,t1.TransferFromProjectName,t1.TransferFromDepartmentName,t1.TransferFromLocationName,t2.TransferToProjectName,t2.TransferToDepartmentName,t2.TransferToLocationName,TransferRelievingDate,TransferJoiningDate,[Status] FROM\n" +
+"(SELECT TransferID,EmployeeName,ProjectName TransferFromProjectName,DepartmentName TransferFromDepartmentName,LocationName TransferFromLocationName FROM Transfers LEFT OUTER JOIN Employees ON Transfers.EmployeeNumber=Employees.EmployeeNumber\n" +
+"                         LEFT OUTER JOIN PROJECTs ON TransferFromProjectID=ProjectID\n" +
+"                         LEFT OUTER JOIN Locations on TransferFromLocationID=LocationID \n" +
+"                         LEFT OUTER JOIN Departments on TransferFromDepartmentID=DepartmentID                         \n" +
+")t1\n" +
+"INNER JOIN\n" +
+"(SELECT TransferID,EmployeeName,ProjectName TransferToProjectName,DepartmentName TransferToDepartmentName,LocationName TransferToLocationName,TransferRelievingDate,TransferJoiningDate,[Status] =CASE [Status] WHEN 1 THEN 'Approve'\n" +
+"WHEN 0 THEN 'Pendding' END FROM Transfers LEFT OUTER JOIN Employees ON Transfers.EmployeeNumber=Employees.EmployeeNumber\n" +
+"                         LEFT OUTER JOIN PROJECTs ON TransferToProjectID=ProjectID\n" +
+"                         LEFT OUTER JOIN Locations on TransferFromLocationID=LocationID \n" +
+"                         LEFT OUTER JOIN Departments on TransferFromDepartmentID=DepartmentID\n" +
+"                         )t2     ON t1.TransferID=t2.TransferID"+
+" WHERE "+nameSearch+" like'%"+value+"%'"+" OR "+locationSearch+" like'%"+value+"%'"+" OR "+projectSearch+" like'%"+value+"%'"+" OR "+departmentSearch+" like'%"+value+"%'"+
+" order by TransferID DESC";   
+ 
             }
             else 
             {
-                query = "SELECT EmployeeNumber,EmployeeName,EmployeeFirstName,DateOfBirth,Sex,Address,PhoneNum,[Role],WorkExperience,Projects.ProjectName CurrentProjectName,Locations.LocationName CurrentLocationName,Departments.DepartmentName CurrentDepartmentName \n" +
-"FROM Employees LEFT OUTER JOIN Projects ON Employees.CurrentProjectID=Projects.ProjectID\n" +
-"LEFT OUTER JOIN Departments ON Employees.CurrentDepartmentID=Departments.DepartmentID\n" +
-"LEFT OUTER JOIN Locations ON Employees.CurrentLocationID=Locations.LocationID\n" +     
-                        "WHERE "+type+" like'%"+value+"%'"+
-"order by EmployeeNumber DESC";
+                query = "SELECT t1.TransferID,t1.EmployeeName,t1.TransferFromProjectName,t1.TransferFromDepartmentName,t1.TransferFromLocationName,t2.TransferToProjectName,t2.TransferFromDepartmentName,t2.TransferFromLocationName,TransferRelievingDate,TransferJoiningDate,[Status] FROM\n" +
+"(SELECT TransferID,EmployeeName,ProjectName TransferFromProjectName,DepartmentName TransferFromDepartmentName,LocationName TransferFromLocationName FROM Transfers LEFT OUTER JOIN Employees ON Transfers.EmployeeNumber=Employees.EmployeeNumber\n" +
+"                         LEFT OUTER JOIN PROJECTs ON TransferFromProjectID=ProjectID\n" +
+"                         LEFT OUTER JOIN Locations on TransferFromLocationID=LocationID \n" +
+"                         LEFT OUTER JOIN Departments on TransferFromDepartmentID=DepartmentID                         \n" +
+")t1\n" +
+"INNER JOIN\n" +
+"(SELECT TransferID,EmployeeName,ProjectName TransferToProjectName,DepartmentName TransferFromDepartmentName,LocationName TransferFromLocationName,TransferRelievingDate,TransferJoiningDate,[Status] =CASE [Status] WHEN 1 THEN 'Approve'\n" +
+"WHEN 0 THEN 'Pendding' END FROM Transfers LEFT OUTER JOIN Employees ON Transfers.EmployeeNumber=Employees.EmployeeNumber\n" +
+"                         LEFT OUTER JOIN PROJECTs ON TransferToProjectID=ProjectID\n" +
+"                         LEFT OUTER JOIN Locations on TransferFromLocationID=LocationID \n" +
+"                         LEFT OUTER JOIN Departments on TransferFromDepartmentID=DepartmentID\n" +
+"                         )t2     ON t1.TransferID=t2.TransferID"+    
+                        " WHERE "+type+" like'%"+value+"%'"+
+" order by TransferID DESC";
             }
             Connection conn = ConnectSQL.getConnection();
             Statement stmt = null;
