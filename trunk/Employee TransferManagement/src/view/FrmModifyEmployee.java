@@ -458,7 +458,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
            parent.refresh();
            JOptionPane.showMessageDialog(this,"Add employee successful");
            this.dispose();
-       }
+       }else JOptionPane.showMessageDialog(rootPane, "Add fail!");
        }
        if(modifyMode==edit){
         if(empBO.updateEmployee(emp))
@@ -466,7 +466,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
            parent.refresh();
            JOptionPane.showMessageDialog(this,"Update employee successful");
            this.dispose();
-       }
+       }else JOptionPane.showMessageDialog(rootPane, "Update fail!");
         }}
     }//GEN-LAST:event_btModifyActionPerformed
 public boolean validateEmp(){
@@ -498,7 +498,7 @@ public boolean validateEmp(){
 }
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
           int dialogButton = JOptionPane.YES_NO_OPTION;
-       int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to delete this department?","Warning",dialogButton);
+       int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to delete this employee?","Warning",dialogButton);
         if(dialogResult == JOptionPane.YES_OPTION){
         EmployeeBO bo=new EmployeeBO();
         Employee emp=new Employee();
@@ -509,7 +509,7 @@ public boolean validateEmp(){
             JOptionPane.showMessageDialog(rootPane, "Delete success!");
                 parent.refresh();
                 this.dispose();
-            }
+            }else JOptionPane.showMessageDialog(rootPane, "Delete fail!");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btDeleteActionPerformed
 
