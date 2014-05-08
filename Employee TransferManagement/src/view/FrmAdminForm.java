@@ -6,8 +6,10 @@ package view;
 
 import Connect.DataAccess;
 import entity.Employee;
+import entity.Request;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,6 +28,9 @@ import model.TransferBO;
 public class FrmAdminForm extends javax.swing.JFrame {
 
     int empID=-1;
+    FrmMain frmMain;
+    FrmLogin frmLogin;
+    
     FrmModifyEmployee modifyEmp;
     FrmModifyDepartment modifyDep;
     FrmModifyProject modifyProj;
@@ -42,10 +47,12 @@ public class FrmAdminForm extends javax.swing.JFrame {
     /**
      * Creates new form FrmAdminForm
      */
-    public FrmAdminForm(int id) {
+    public FrmAdminForm(int id,FrmMain frmmain,FrmLogin frmlogin) {
         initComponents();
         this.setLocationRelativeTo( null );
         empID=id;
+        this.frmMain=frmmain;
+        this.frmLogin=frmlogin;
     }
 
     /**
@@ -78,11 +85,26 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableLocation = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableReport = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTableRequestTransfer = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
         btSearch = new javax.swing.JButton();
         cbxSearchType = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -164,7 +186,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -193,7 +215,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -222,7 +244,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -251,7 +273,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -280,11 +302,127 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPaneAdmin.addTab("List Location", jPanel5);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Report transfer");
+
+        jLabel2.setText("From");
+
+        jLabel3.setText("To");
+
+        jTableReport.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(jTableReport);
+
+        jButton1.setText("Show report");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel2)
+                        .addGap(41, 41, 41)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel3)
+                        .addGap(42, 42, 42)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneAdmin.addTab("Report", jPanel6);
+
+        jTableRequestTransfer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableRequestTransfer.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane7.setViewportView(jTableRequestTransfer);
+
+        jButton2.setText("Approve");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addComponent(jButton2))
+        );
+
+        jTabbedPaneAdmin.addTab("Review Request", jPanel7);
 
         txtSearch.setForeground(new java.awt.Color(204, 204, 204));
         txtSearch.setText("Search");
@@ -316,6 +454,23 @@ public class FrmAdminForm extends javax.swing.JFrame {
         cbxSearchType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Name", "Location", "Project", "Department" }));
 
         jMenu1.setText("File");
+
+        jMenuItem1.setText("Change password");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Logout");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -327,7 +482,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneAdmin)
+            .addComponent(jTabbedPaneAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -348,8 +503,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
                         .addComponent(btSearch)
                         .addComponent(cbxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPaneAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneAdmin)
+                .addContainerGap())
         );
 
         jTabbedPaneAdmin.getAccessibleContext().setAccessibleName("frmAdmin_tab1");
@@ -359,7 +514,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPaneAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPaneAdminStateChanged
-       if(jTabbedPaneAdmin.getSelectedIndex()==0){
+      jButton2.setVisible(false);
+        if(jTabbedPaneAdmin.getSelectedIndex()==0){
         try {
                     jTableEmployees.setModel(new TableModel(new DataAccess().getEmployee(0)));
                 } catch (SQLException ex) {
@@ -391,6 +547,14 @@ public class FrmAdminForm extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
                 }}
+           if(jTabbedPaneAdmin.getSelectedIndex()==6){
+               jButton2.setVisible(true);
+                try {
+                jTableRequestTransfer.setModel(new TableModel(new DataAccess().getRequest()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jTabbedPaneAdminStateChanged
 
     private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
@@ -455,6 +619,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
             modifyLoc.setVisible(true);
             modifyLoc.setTitle("Add location");
         }
+        
     }//GEN-LAST:event_btAddActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
@@ -619,6 +784,53 @@ public class FrmAdminForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btEditActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        this.dispose();
+        frmMain.setVisible(true);
+        frmLogin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrmChangePassword fmr=new FrmChangePassword(empID);
+        fmr.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+DataAccess da=new DataAccess();
+        try {
+            jTableReport.setModel(new TableModel(da.getTransfers(formatter.format(jDateChooser1.getDate()), formatter.format(jDateChooser2.getDate()))));
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+if(jTabbedPaneAdmin.getSelectedIndex()==6){
+                try {
+                    int id=-1;
+                    //int emidrequest=-1;
+                    if(jTableRequestTransfer.getSelectedRow()>=0){
+                id=(int) jTableRequestTransfer.getValueAt(jTableRequestTransfer.getSelectedRow(), 0);
+                    //emidrequest=(int) jTableRequestTransfer.getValueAt(jTableRequestTransfer.getSelectedRow(), 0);
+                    }if(id>=0){
+                    Request req=new Request();
+                    req.setRequestID(id);
+                    req.setStatus(true);
+                    DataAccess da=new DataAccess();
+                    if(da.updateRequest(req)){
+                    this.refresh();
+           JOptionPane.showMessageDialog(this,"Approved");
+                    }
+                    else JOptionPane.showMessageDialog(this,"fail");
+                    }
+                } catch (Exception ex) {
+                Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -664,25 +876,40 @@ public class FrmAdminForm extends javax.swing.JFrame {
     private javax.swing.JButton btEdit;
     private javax.swing.JButton btSearch;
     private javax.swing.JComboBox cbxSearchType;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPaneAdmin;
     private javax.swing.JTable jTableDepartment;
     private javax.swing.JTable jTableEmployees;
     private javax.swing.JTable jTableLocation;
     private javax.swing.JTable jTableProject;
+    private javax.swing.JTable jTableReport;
+    private javax.swing.JTable jTableRequestTransfer;
     private javax.swing.JTable jTableTrans;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField txtSearch;
@@ -721,5 +948,12 @@ public class FrmAdminForm extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
                 }}
+           if(jTabbedPaneAdmin.getSelectedIndex()==6){
+                try {
+                jTableRequestTransfer.setModel(new TableModel(new DataAccess().getRequest()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

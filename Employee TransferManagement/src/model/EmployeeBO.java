@@ -25,6 +25,12 @@ public class EmployeeBO {
         boolean stt=da.insertEmployee(e);
         return stt;
     }
+    public boolean changePassword(int uid,String newPassword){
+        DataAccess da=new DataAccess();
+        newPassword=(EncryptMD5.MD5Convert(newPassword));
+        boolean stt=da.updateUser(uid,newPassword);
+        return stt;
+    }
     public boolean updateEmployee(Employee e){
         DataAccess da=new DataAccess();
         boolean stt=da.updateEmployee(e);
