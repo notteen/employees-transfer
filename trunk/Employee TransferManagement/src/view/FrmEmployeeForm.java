@@ -8,6 +8,7 @@ import Connect.DataAccess;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import model.TableModel;
 
 /**
@@ -26,6 +27,7 @@ public class FrmEmployeeForm extends javax.swing.JFrame {
     public FrmEmployeeForm(int id,FrmMain frmmain,FrmLogin frmLogin) {
         initComponents();
         this.setLocationRelativeTo( null );
+        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         empID=id;
         this.frmMain=frmmain;
         this.frmLogin=frmLogin;
