@@ -32,10 +32,10 @@ public class ControllerMain {
         frmLogin.setLocationRelativeTo(frmMain);
         
         frmLogin.getBtLogin().addActionListener(new ButtonLoginListener1());
-        
         frmMain.setVisible(true);
         frmLogin.setVisible(true);
     }
+
     class ButtonLoginListener1 implements ActionListener {
 
         @Override
@@ -46,17 +46,20 @@ public class ControllerMain {
             JOptionPane.showMessageDialog(frmLogin,"UserName or password is incorrect");
         }
         if(accountType==admin){
-            frmLogin.dispose();
-            frmAdmin=new FrmAdminForm(login.getEmployeeID());
+            frmLogin.setVisible(false);
+            frmAdmin=new FrmAdminForm(login.getEmployeeID(),frmMain,frmLogin);
             frmMain.setVisible(false);
             frmAdmin.setVisible(true);
         }
         if(accountType==employee){
-            frmLogin.dispose();
-            frmEmployee=new FrmEmployeeForm(login.getEmployeeID());
+            frmLogin.setVisible(false);
+            frmEmployee=new FrmEmployeeForm(login.getEmployeeID(),frmMain,frmLogin);
             frmEmployee.setVisible(true);
             frmMain.setVisible(false);
         }
+        accountType=-1;
+        frmLogin.getTxtAccount().setText("");
+        frmLogin.getTxtPassword().setText("");
         }
     }
 }

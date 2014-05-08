@@ -48,7 +48,22 @@ public class DataAccess {
             }
             return false;
     }
-        
+        public boolean insertRequest(entity.Request em) {
+            try {
+                String query = "INSERT INTO Requests VALUES("
+                        + em.getEmployeeID()+","+em.getProjectID()+","+em.getLocationID()+","+em.getDepartmentID()+",'"+em.getStatus()+"','"+em.getContent()+ "')";
+                Connection conn = ConnectSQL.getConnection();
+                Statement st = conn.createStatement();
+                int stt=st.executeUpdate(query);
+                st.close();
+                conn.close();
+                if(stt==1)
+                return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return false;
+    }
          public boolean insertTransfer(entity.Transfer em) {
             try {
                 String query = "INSERT INTO Transfers VALUES("
@@ -257,7 +272,36 @@ public class DataAccess {
             }
             return false;
     }
-          
+          public boolean updateUser(int emID,String newPassword) {
+            try {
+                String query = "UPDATE Users SET password='"+newPassword+"' WHERE ID=(SELECT userid from Employees WHERE EmployeeNumber="+emID+")";
+                Connection conn = ConnectSQL.getConnection();
+                Statement st = conn.createStatement();
+                int stt=st.executeUpdate(query);
+                st.close();
+                conn.close();
+                if(stt==1)
+                return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return false;
+    }
+          public boolean updateRequest(entity.Request em) {
+            try {
+                String query = "UPDATE Requests SET status='"+em.getStatus()+"' WHERE RequestID="+em.getRequestID();
+                Connection conn = ConnectSQL.getConnection();
+                Statement st = conn.createStatement();
+                int stt=st.executeUpdate(query);
+                st.close();
+                conn.close();
+                if(stt==1)
+                return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return false;
+    }
                     public boolean updateTransfer(entity.Transfer em) {
             try {
                 String query = "UPDATE Transfers SET EmployeeNumber="+em.getEmployeeNumber()+",TransferToProjectID="+em.getTransferToProjectID()
@@ -473,6 +517,35 @@ public class DataAccess {
         }
         return null;
     }
+        
+        public ResultSet getTransfers(String from,String to) {
+        try {
+            String query = null;
+                query = "SELECT t1.TransferID,t1.EmployeeName,t1.TransferFromProjectName,t1.TransferFromDepartmentName,t1.TransferFromLocationName,t2.TransferToProjectName,t2.TransferFromDepartmentName,t2.TransferFromLocationName,TransferRelievingDate,TransferJoiningDate,[Status] FROM\n" +
+"(SELECT TransferID,EmployeeName,ProjectName TransferFromProjectName,DepartmentName TransferFromDepartmentName,LocationName TransferFromLocationName FROM Transfers LEFT OUTER JOIN Employees ON Transfers.EmployeeNumber=Employees.EmployeeNumber\n" +
+"                         LEFT OUTER JOIN PROJECTs ON TransferFromProjectID=ProjectID\n" +
+"                         LEFT OUTER JOIN Locations on TransferFromLocationID=LocationID \n" +
+"                         LEFT OUTER JOIN Departments on TransferFromDepartmentID=DepartmentID                         \n" +
+")t1\n" +
+"INNER JOIN\n" +
+"(SELECT TransferID,EmployeeName,ProjectName TransferToProjectName,DepartmentName TransferFromDepartmentName,LocationName TransferFromLocationName,TransferRelievingDate,TransferJoiningDate,[Status] =CASE [Status] WHEN 1 THEN 'Approve'\n" +
+"WHEN 0 THEN 'Pendding' END FROM Transfers LEFT OUTER JOIN Employees ON Transfers.EmployeeNumber=Employees.EmployeeNumber\n" +
+"                         LEFT OUTER JOIN PROJECTs ON TransferToProjectID=ProjectID\n" +
+"                         LEFT OUTER JOIN Locations on TransferFromLocationID=LocationID \n" +
+"                         LEFT OUTER JOIN Departments on TransferFromDepartmentID=DepartmentID\n" +
+"                         )t2     ON t1.TransferID=t2.TransferID"+
+" WHERE TransferRelievingDate>='"+from+"' AND TransferRelievingDate<='"+to+"' order by TransferID DESC ";
+            Connection conn = ConnectSQL.getConnection();
+            Statement stmt = null;
+            stmt= conn.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            return res;
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+        
      public ResultSet getDepartments(int id) {
         try {
             String query = null;
@@ -568,7 +641,46 @@ public class DataAccess {
         }
         return null;
     }
-     
+          public ResultSet getRequest() {
+        try {
+            String query = null;
+                query = "SELECT RequestID,EmployeeName,ProjectName,LocationName,DepartmentName,Content,[Status] =CASE [status] WHEN 1 THEN 'Approved' WHEN 0 THEN'Pendding' END FROM Requests LEFT OUTER JOIN Employees ON EmployeeID=EmployeeNumber\n" +
+"LEFT OUTER JOIN Projects ON Requests.ProjectID=Projects.ProjectID\n" +
+"LEFT OUTER JOIN Departments ON Requests.DepartmentID=Departments.DepartmentID\n" +
+"LEFT OUTER JOIN Locations ON Requests.LocationID=Locations.LocationID\n" ;
+            Connection conn = ConnectSQL.getConnection();
+            Statement stmt = null;
+            stmt= conn.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            return res;
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+                    public ResultSet getRequest(int ID) {
+        try {
+            String query = null;
+                query = "SELECT RequestID,EmployeeName,ProjectName,LocationName,DepartmentName,Content,[Status] =CASE [status] WHEN 1 THEN 'Approved' WHEN 0 THEN'Pendding' END FROM Requests LEFT OUTER JOIN Employees ON EmployeeID=EmployeeNumber\n" +
+"LEFT OUTER JOIN Projects ON Requests.ProjectID=Projects.ProjectID\n" +
+"LEFT OUTER JOIN Departments ON Requests.DepartmentID=Departments.DepartmentID\n" +
+"LEFT OUTER JOIN Locations ON Requests.LocationID=Locations.LocationID\n" +
+"WHERE EmployeeID="+ID;
+            Connection conn = ConnectSQL.getConnection();
+            Statement stmt = null;
+            stmt= conn.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            return res;
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+             /**
+     *
+     * @param id
+     * @return
+     */
      public ResultSet getLocations() {
         try {
             String query = null;
