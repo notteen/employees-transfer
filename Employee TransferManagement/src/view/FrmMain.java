@@ -54,6 +54,7 @@ public class FrmMain extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_login.png"))); // NOI18N
         jMenuItem1.setText("Login");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

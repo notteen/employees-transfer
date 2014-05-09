@@ -63,6 +63,7 @@ public class FrmModifyProject extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modify project page");
 
+        btModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_add.png"))); // NOI18N
         btModify.setText("Add");
         btModify.setMaximumSize(new java.awt.Dimension(83, 25));
         btModify.setMinimumSize(new java.awt.Dimension(83, 25));
@@ -88,7 +89,7 @@ public class FrmModifyProject extends javax.swing.JFrame {
 
         lbprojID.setText("ProjectID");
 
-        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/gnome_edit_delete.png"))); // NOI18N
+        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_remove.png"))); // NOI18N
         btDelete.setText("Delete");
         btDelete.setMaximumSize(new java.awt.Dimension(83, 25));
         btDelete.setMinimumSize(new java.awt.Dimension(83, 25));
@@ -128,7 +129,7 @@ public class FrmModifyProject extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbprojID)
                     .addComponent(lbProjectID))

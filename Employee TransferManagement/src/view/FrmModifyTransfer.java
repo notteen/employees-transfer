@@ -262,6 +262,7 @@ public class FrmModifyTransfer extends javax.swing.JFrame {
 
         lbTransferID.setText("Employee");
 
+        btAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_add.png"))); // NOI18N
         btAdd.setText("Add");
         btAdd.setMaximumSize(new java.awt.Dimension(83, 25));
         btAdd.setMinimumSize(new java.awt.Dimension(83, 25));
@@ -271,7 +272,7 @@ public class FrmModifyTransfer extends javax.swing.JFrame {
             }
         });
 
-        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/gnome_edit_delete.png"))); // NOI18N
+        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_remove.png"))); // NOI18N
         btDelete.setText("Delete");
         btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,8 +349,8 @@ public class FrmModifyTransfer extends javax.swing.JFrame {
                                                 .addComponent(btAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(4, 4, 4)
+                                                .addComponent(jButton3)
                                                 .addGap(0, 2, Short.MAX_VALUE)))
                                         .addContainerGap())))
                             .addGroup(layout.createSequentialGroup()
@@ -364,7 +365,7 @@ public class FrmModifyTransfer extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbtransID)
                     .addComponent(lbTransferID))
