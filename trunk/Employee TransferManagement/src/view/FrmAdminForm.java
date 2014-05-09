@@ -7,7 +7,7 @@ package view;
 import Connect.DataAccess;
 import entity.Employee;
 import entity.Request;
-import java.awt.event.KeyEvent;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -114,6 +114,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
+        btAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_add.png"))); // NOI18N
         btAdd.setText("Add");
         btAdd.setFocusable(false);
         btAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -127,6 +128,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         });
         jToolBar1.add(btAdd);
 
+        btEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_edit.png"))); // NOI18N
         btEdit.setText("Edit");
         btEdit.setFocusable(false);
         btEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -140,6 +142,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         });
         jToolBar1.add(btEdit);
 
+        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_close.png"))); // NOI18N
         btDelete.setText("Delete");
         btDelete.setFocusable(false);
         btDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -153,6 +156,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         });
         jToolBar1.add(btDelete);
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_connect.png"))); // NOI18N
         jButton4.setText("Refresh");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -310,6 +314,12 @@ public class FrmAdminForm extends javax.swing.JFrame {
 
         jTabbedPaneAdmin.addTab("List Location", jPanel5);
 
+        jPanel6.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel6ComponentShown(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Report transfer");
 
@@ -330,7 +340,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTableReport);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/view.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_view.png"))); // NOI18N
         jButton1.setText("Show report");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,11 +393,20 @@ public class FrmAdminForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPaneAdmin.addTab("Report", jPanel6);
+
+        jPanel7.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jPanel7ComponentHidden(evt);
+            }
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel7ComponentShown(evt);
+            }
+        });
 
         jTableRequestTransfer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -445,12 +464,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
                 txtSearchFocusLost(evt);
             }
         });
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSearchKeyPressed(evt);
-            }
-        });
 
+        btSearch.setText("Search");
         btSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSearchActionPerformed(evt);
@@ -461,6 +476,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_password.png"))); // NOI18N
         jMenuItem1.setText("Change password");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -469,7 +485,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_logout.png"))); // NOI18N
         jMenuItem2.setText("Logout");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -494,7 +510,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btSearch)
                 .addGap(5, 5, 5))
         );
         layout.setVerticalGroup(
@@ -507,7 +523,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
                         .addComponent(btSearch)
                         .addComponent(cbxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPaneAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneAdmin))
         );
 
         jTabbedPaneAdmin.getAccessibleContext().setAccessibleName("frmAdmin_tab1");
@@ -567,17 +583,14 @@ public class FrmAdminForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPaneAdminStateChanged
 
     private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
-
+        txtSearch.setText("");
+        txtSearch.setForeground(Color.BLACK);
     }//GEN-LAST:event_txtSearchFocusGained
 
     private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
-
+        txtSearch.setText("Search");
+        txtSearch.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_txtSearchFocusLost
-
-    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        }
-    }//GEN-LAST:event_txtSearchKeyPressed
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         String searchType="";
@@ -805,8 +818,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-DataAccess da=new DataAccess();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        DataAccess da=new DataAccess();
         try {
             jTableReport.setModel(new TableModel(da.getTransfers(formatter.format(jDateChooser1.getDate()), formatter.format(jDateChooser2.getDate()))));
             // TODO add your handling code here:
@@ -839,6 +852,29 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6){
             }
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jPanel6ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel6ComponentShown
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        DataAccess da=new DataAccess();
+        try {
+            jTableReport.setModel(new TableModel(da.getTransfers(formatter.format(jDateChooser1.getDate()), formatter.format(jDateChooser2.getDate()))));
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel6ComponentShown
+
+    private void jPanel7ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel7ComponentShown
+        btAdd.setEnabled(false);
+        btDelete.setEnabled(false);
+        btEdit.setEnabled(false);
+    }//GEN-LAST:event_jPanel7ComponentShown
+
+    private void jPanel7ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel7ComponentHidden
+        btAdd.setEnabled(true);
+        btDelete.setEnabled(true);
+        btEdit.setEnabled(true);
+
+    }//GEN-LAST:event_jPanel7ComponentHidden
 
     /**
      * @param args the command line arguments

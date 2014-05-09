@@ -57,7 +57,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbprojID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbProjectID" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -86,6 +86,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btModify">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Icons/s_add.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[83, 25]"/>
@@ -139,7 +142,7 @@
     <Component class="javax.swing.JButton" name="btDelete">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icons/gnome_edit_delete.png"/>
+          <Image iconType="3" name="/Icons/s_remove.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
