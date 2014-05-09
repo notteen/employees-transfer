@@ -58,7 +58,7 @@ public class FrmLogin extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Exit");
+        jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -114,7 +114,10 @@ public class FrmLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);// TODO add your handling code here:
+       this.setVisible(false);
+       txtAccount.setText("");
+       txtPassword.setText("");
+        // System.exit(0);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

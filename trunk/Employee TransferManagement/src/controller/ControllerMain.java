@@ -30,12 +30,19 @@ public class ControllerMain {
         frmLogin=new FrmLogin(frmMain,true);
         frmLogin.setResizable(false);
         frmLogin.setLocationRelativeTo(frmMain);
-        
+        frmMain.getjMenuItem1().addActionListener(new menuitemListener());
         frmLogin.getBtLogin().addActionListener(new ButtonLoginListener1());
         frmMain.setVisible(true);
         frmLogin.setVisible(true);
     }
+    class menuitemListener implements ActionListener{
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // frmLogin=new FrmLogin(frmMain,true);
+        frmLogin.setVisible(true);
+        }
+    }
     class ButtonLoginListener1 implements ActionListener {
 
         @Override

@@ -107,7 +107,6 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin page");
@@ -118,6 +117,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
         btAdd.setText("Add");
         btAdd.setFocusable(false);
         btAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btAdd.setMaximumSize(new java.awt.Dimension(58, 58));
+        btAdd.setMinimumSize(new java.awt.Dimension(58, 58));
         btAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +130,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
         btEdit.setText("Edit");
         btEdit.setFocusable(false);
         btEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEdit.setMaximumSize(new java.awt.Dimension(58, 58));
+        btEdit.setMinimumSize(new java.awt.Dimension(58, 58));
         btEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +143,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
         btDelete.setText("Delete");
         btDelete.setFocusable(false);
         btDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btDelete.setMaximumSize(new java.awt.Dimension(58, 58));
+        btDelete.setMinimumSize(new java.awt.Dimension(58, 58));
         btDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +156,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jButton4.setText("Refresh");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setMaximumSize(new java.awt.Dimension(58, 58));
+        jButton4.setMinimumSize(new java.awt.Dimension(58, 58));
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -442,7 +449,6 @@ public class FrmAdminForm extends javax.swing.JFrame {
             }
         });
 
-        btSearch.setText("jButton5");
         btSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSearchActionPerformed(evt);
@@ -461,6 +467,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
         jMenuItem2.setText("Logout");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,9 +477,6 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -888,7 +892,6 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
