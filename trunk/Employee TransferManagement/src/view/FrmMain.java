@@ -4,7 +4,11 @@
  */
 package view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -16,8 +20,20 @@ public class FrmMain extends javax.swing.JFrame {
      * Creates new form FrmMain
      */
     public FrmMain() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         this.setLocationRelativeTo( null );
+        
     }
 
     /**
@@ -68,7 +84,8 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
       
-        // TODO add your handling code here:
+        FrmLogin frmlog=new FrmLogin(this,true);
+        frmlog.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public JMenuItem getjMenuItem1() {
