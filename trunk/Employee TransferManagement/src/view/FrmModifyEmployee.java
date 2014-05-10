@@ -42,12 +42,12 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
         this.setLocationRelativeTo( null );
         this.modifyMode=modifyMode;
         this.employeeID=employeeID;
+        lbEmpID.setVisible(false);
+            lbUserID.setVisible(false);
+            lbEmployeeID.setVisible(false);
+            lbUID.setVisible(false);
         if(modifyMode==add){
             btDelete.setVisible(false);
-            lbEmployeeID.setVisible(false);
-            lbUserID.setVisible(false);
-            lbEmpID.setVisible(false);
-            lbUID.setVisible(false);
             btModify.setText("Add");
             ProjectBO prjBO=new ProjectBO();
         LocationBO locBO=new LocationBO();
@@ -63,10 +63,11 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
             Employee emp=bo.getEmployeebyID(employeeID);
             lbEmployeeID.setText(emp.getEmployeeNumber()+"");
             lbUserID.setText(emp.getUserID()+"");
-            lbUname.setVisible(false);
-            lbPassword.setVisible(false);
-            txtUserName.setVisible(false);
-            txtPassword.setVisible(false);
+            //lbUname.setVisible(false);
+            //lbPassword.setVisible(false);
+            txtUserName.setText(emp.getAccount());
+//            txtUserName.setVisible(false);
+//            txtPassword.setVisible(false);
             txtAddress.setText(emp.getAddress());
             txtExperience.setText(emp.getWorkExperience());
             txtFirstName.setText(emp.getEmployeeFirstName());
@@ -452,8 +453,10 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
         if(validateEmp()){
         Employee emp=new Employee();
         emp.setEmployeeNumber(employeeID);
-        emp.setAccount(txtUserName.getText());
-        emp.setPassword(txtPassword.getText());
+        if(lbUserID.getText().length()>0)
+        emp.setUserID(Integer.parseInt(lbUserID.getText()));
+        emp.setAccount(txtUserName.getText().trim());
+        emp.setPassword(txtPassword.getText().trim());
         if((cbxDepartment.getModel().getSize())>0) {
             emp.setCurrentDepartmentID(((Department)(cbxDepartment.getSelectedItem())).getDepartmentID());
         } 
@@ -466,7 +469,6 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
         emp.setEmployeeFirstName(txtFirstName.getText());
         emp.setEmployeeName(txtLastName.getText());
         emp.setEmrole(txtRole.getText());
-        emp.setPassword(txtPassword.getText());
         emp.setRole(0);
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         emp.setDateOfBirth(formatter.format(jDateChooser1.getDate()));
