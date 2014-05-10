@@ -1,1 +1,1 @@
-localhost;1433;EmployeeTransferManagement;sa;root
+localhost;1433;EmployeeTransferManagement;sa;123456
