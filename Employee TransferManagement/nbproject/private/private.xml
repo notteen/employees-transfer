@@ -6,15 +6,13 @@
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/view/FrmLogin.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/model/TableModel.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/view/FrmAddAdmin.java</file>
-            <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/ultity/Validator.java</file>
-            <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/ultity/NumberToWords.java</file>
-            <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/ultity/Tools.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/view/FrmModifyEmployee.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/entity/Employee.java</file>
-            <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/ultity/PrintPage.java</file>
+            <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/view/FrmEmployeeForm.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/model/EmployeeBO.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/view/FrmChangePassword.java</file>
             <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/view/FrmAdminForm.java</file>
+            <file>file:/E:/PhuongPC/Work/etm/Employee%20TransferManagement/src/Connect/DataAccess.java</file>
         </group>
     </open-files>
 </project-private>
