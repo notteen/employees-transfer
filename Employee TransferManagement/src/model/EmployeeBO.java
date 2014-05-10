@@ -62,6 +62,7 @@ public class EmployeeBO {
                 emp.setSex(rs.getBoolean(11));
                 emp.setAddress(rs.getString(12));
                 emp.setPhoneNumber(rs.getString(13));
+                emp.setAccount(rs.getString(14));
             }
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeBO.class.getName()).log(Level.SEVERE, null, ex);

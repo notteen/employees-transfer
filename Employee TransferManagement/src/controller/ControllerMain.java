@@ -27,7 +27,7 @@ public class ControllerMain {
         FrmEmployeeForm frmEmployee;
     public ControllerMain(){
 //        FrmAddAdmin fm=new FrmAddAdmin();
-//            fm.setVisible(true);
+//           fm.setVisible(true);
         frmMain=new FrmMain();
         frmLogin=new FrmLogin(frmMain,true);
         frmLogin.setResizable(false);
