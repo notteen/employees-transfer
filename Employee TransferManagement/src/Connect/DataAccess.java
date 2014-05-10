@@ -259,13 +259,13 @@ public class DataAccess {
 
     public boolean updateEmployee(entity.Employee em) {
         try {
-            String query = "UPDATE Employees SET EmployeeName='" + em.getEmployeeName() + "',Role='" + em.getEmrole() + "',WorkExperience='" + em.getWorkExperience() + "',CurrentProjectID=" + em.getCurrentProjectID() + ",CurrentLocationID=" + em.getCurrentLocationID() + ",CurrentDepartmentID=" + em.getCurrentDepartmentID() + ",EmployeeFirstName='" + em.getEmployeeFirstName() + "',DateOfBirth='" + em.getDateOfBirth() + "',Sex='" + em.getSex() + "',Address='" + em.getAddress() + "',PhoneNum='" + em.getPhoneNumber() + "' WHERE EmployeeNumber=" + em.getEmployeeNumber();
+            String query = "UPDATE Employees SET EmployeeName='" + em.getEmployeeName()+ "',UserID=" + em.getUserID()+ ",Role='" + em.getEmrole() + "',WorkExperience='" + em.getWorkExperience() + "',CurrentProjectID=" + em.getCurrentProjectID() + ",CurrentLocationID=" + em.getCurrentLocationID() + ",CurrentDepartmentID=" + em.getCurrentDepartmentID() + ",EmployeeFirstName='" + em.getEmployeeFirstName() + "',DateOfBirth='" + em.getDateOfBirth() + "',Sex='" + em.getSex() + "',Address='" + em.getAddress() + "',PhoneNum='" + em.getPhoneNumber() + "' WHERE EmployeeNumber=" + em.getEmployeeNumber();
             Connection conn = ConnectSQL.getConnection();
             Statement st = conn.createStatement();
             int stt = st.executeUpdate(query);
             if(!em.getPassword().equals(""))
-            query="UPDATE Users set Uname='"+em.getAccount()+"',password='"+em.getPassword()+"'";
-            else query="UPDATE Users set Uname='"+em.getAccount()+"'";
+            query="UPDATE Users set Uname='"+em.getAccount()+"',password='"+em.getPassword()+"' WHERE ID="+em.getUserID();
+            else query="UPDATE Users set Uname='"+em.getAccount()+"' WHERE ID="+em.getUserID() ;
             st.executeUpdate(query);
             st.close();
             conn.close();
@@ -473,7 +473,7 @@ public class DataAccess {
                         + "LEFT OUTER JOIN Locations ON Employees.CurrentLocationID=Locations.LocationID\n"
                         + "order by EmployeeNumber DESC";
             } else {
-                query = "SELECT TOP " + limit + " EmployeeNumber,EmployeeName,EmployeeFirstName,UserID,DateOfBirth,Sex,Address,PhoneNum,[Role],WorkExperience,Projects.ProjectName CurrentProjectName,Locations.LocationName CurrentLocationName,Departments.DepartmentName CurrentDepartmentName \n"
+                query = "SELECT TOP " + limit + " UserID,EmployeeNumber,EmployeeName,EmployeeFirstName,DateOfBirth,Sex,Address,PhoneNum,[Role],WorkExperience,Projects.ProjectName CurrentProjectName,Locations.LocationName CurrentLocationName,Departments.DepartmentName CurrentDepartmentName \n"
                         + "FROM Employees LEFT OUTER JOIN Projects ON Employees.CurrentProjectID=Projects.ProjectID\n"
                         + "LEFT OUTER JOIN Departments ON Employees.CurrentDepartmentID=Departments.DepartmentID\n"
                         + "LEFT OUTER JOIN Locations ON Employees.CurrentLocationID=Locations.LocationID\n"
@@ -612,8 +612,19 @@ public class DataAccess {
     public ResultSet getEmployeeByID(int emid) {
         try {
             String query = null;
-            query = "SELECT * \n"
-                    + "FROM Employees \n"
+            query = "SELECT [EmployeeNumber],[EmployeeName]\n" +
+"      ,[UserID]\n" +
+"      ,Employees.[Role]\n" +
+"      ,[WorkExperience]\n" +
+"      ,[CurrentProjectID]\n" +
+"      ,[CurrentLocationID]\n" +
+"      ,[CurrentDepartmentID]\n" +
+"      ,[EmployeeFirstName]\n" +
+"      ,[DateOfBirth]\n" +
+"      ,[Sex]\n" +
+"      ,[Address]\n" +
+"      ,[PhoneNum],Uname \n"
+                    + "FROM Employees INNER JOIN Users ON Employees.UserID=Users.ID\n"
                     + "WHERE EmployeeNumber=" + emid;
             Connection conn = ConnectSQL.getConnection();
             Statement stmt = null;
