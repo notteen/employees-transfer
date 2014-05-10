@@ -32,6 +32,8 @@ public class EmployeeBO {
     }
     public boolean updateEmployee(Employee e){
         DataAccess da=new DataAccess();
+        if(!e.getPassword().equals(""))
+            e.setPassword(EncryptMD5.MD5Convert(e.getPassword()));
         boolean stt=da.updateEmployee(e);
         return stt;
     }

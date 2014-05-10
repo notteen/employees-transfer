@@ -99,7 +99,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTableRequestTransfer = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btApprove = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
         btSearch = new javax.swing.JButton();
         cbxSearchType = new javax.swing.JComboBox();
@@ -195,7 +195,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +222,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +249,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +276,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +303,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,13 +420,18 @@ public class FrmAdminForm extends javax.swing.JFrame {
             }
         ));
         jTableRequestTransfer.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableRequestTransfer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableRequestTransferMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(jTableRequestTransfer);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_ok.png"))); // NOI18N
-        jButton2.setText("Approve");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btApprove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/s_ok.png"))); // NOI18N
+        btApprove.setText("Approve");
+        btApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btApproveActionPerformed(evt);
             }
         });
 
@@ -434,10 +439,10 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(716, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btApprove)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -445,7 +450,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addGap(17, 17, 17)
-                .addComponent(jButton2))
+                .addComponent(btApprove))
         );
 
         jTabbedPaneAdmin.addTab("Review Request", jPanel7);
@@ -533,7 +538,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPaneAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPaneAdminStateChanged
-      jButton2.setVisible(false);
+      btApprove.setVisible(false);
       cbxSearchType.setVisible(false);
       txtSearch.setVisible(false);
       btSearch.setVisible(false);
@@ -573,7 +578,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
                     Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
                 }}
            if(jTabbedPaneAdmin.getSelectedIndex()==6){
-               jButton2.setVisible(true);
+               btApprove.setVisible(true);
                 try {
                 jTableRequestTransfer.setModel(new TableModel(new DataAccess().getRequest()));
             } catch (SQLException ex) {
@@ -754,16 +759,19 @@ public class FrmAdminForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
+        
         if(jTabbedPaneAdmin.getSelectedIndex()==0){
+            if(jTableEmployees.getSelectedRows().length==1)
         if(jTableEmployees.getSelectedRow()>=0){
             int rowIndex=jTableEmployees.getSelectedRow();
-            int empID=(int) jTableEmployees.getValueAt(rowIndex, 0);
+            int empID=(int) jTableEmployees.getValueAt(rowIndex, 1);
             modifyEmpEdit=new FrmModifyEmployee(edit,empID);
             modifyEmpEdit.setParent(this);
             modifyEmpEdit.setVisible(true);
         }
         }
         if(jTabbedPaneAdmin.getSelectedIndex()==1){
+            if(jTableTrans.getSelectedRows().length==1)
         if(jTableTrans.getSelectedRow()>=0){
             int rowIndex=jTableTrans.getSelectedRow();
             int transID=(int) jTableTrans.getValueAt(rowIndex, 0);
@@ -775,7 +783,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
         }
         
         if(jTabbedPaneAdmin.getSelectedIndex()==2){
-        if(jTableProject.getSelectedRow()>=0){
+            if(jTableProject.getSelectedRows().length==1)
+         if(jTableProject.getSelectedRow()>=0){
             int rowIndex=jTableProject.getSelectedRow();
             int empID=(int) jTableProject.getValueAt(rowIndex, 0);
             
@@ -785,6 +794,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
         }
         }
         if(jTabbedPaneAdmin.getSelectedIndex()==3){
+            if(jTableDepartment.getSelectedRows().length==1)
         if(jTableDepartment.getSelectedRow()>=0){
             int rowIndex=jTableDepartment.getSelectedRow();
             int empID=(int) jTableDepartment.getValueAt(rowIndex, 0);
@@ -795,7 +805,8 @@ public class FrmAdminForm extends javax.swing.JFrame {
         }
         }
         if(jTabbedPaneAdmin.getSelectedIndex()==4){
-        if(jTableLocation.getSelectedRow()>=0){
+        if(jTableLocation.getSelectedRows().length==1)
+            if(jTableLocation.getSelectedRow()>=0){
             int rowIndex=jTableLocation.getSelectedRow();
             int empID=(int) jTableLocation.getValueAt(rowIndex, 0);
              modifyLocEdit=new FrmModifyLocation(edit,empID);
@@ -828,9 +839,12 @@ public class FrmAdminForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-if(jTabbedPaneAdmin.getSelectedIndex()==6){
-                try {
+    private void btApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btApproveActionPerformed
+if(jTabbedPaneAdmin.getSelectedIndex()==6&&jTableRequestTransfer.getSelectedRows().length==1){
+    if(!jTableRequestTransfer.getValueAt(jTableRequestTransfer.getSelectedRow(), 6).toString().equals("Approved"))
+        //System.out.println(jTableRequestTransfer.getValueAt(jTableRequestTransfer.getSelectedRow(), 6).toString());
+    {
+        try {
                     int id=-1;
                     //int emidrequest=-1;
                     if(jTableRequestTransfer.getSelectedRow()>=0){
@@ -850,8 +864,9 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6){
                 } catch (Exception ex) {
                 Logger.getLogger(FrmAdminForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btApproveActionPerformed
 
     private void jPanel6ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel6ComponentShown
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -875,6 +890,17 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6){
         btEdit.setEnabled(true);
 
     }//GEN-LAST:event_jPanel7ComponentHidden
+
+    private void jTableRequestTransferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRequestTransferMouseClicked
+       int row = jTableRequestTransfer.rowAtPoint(evt.getPoint());
+       if(row>=0)
+       {
+           if(jTableRequestTransfer.getValueAt(row, 6).equals("Approved"))
+               btApprove.setEnabled(false);
+           else btApprove.setEnabled(true);
+       }
+       
+    }//GEN-LAST:event_jTableRequestTransferMouseClicked
 
     /**
      * @param args the command line arguments
@@ -917,12 +943,12 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6){
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdd;
+    private javax.swing.JButton btApprove;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btEdit;
     private javax.swing.JButton btSearch;
     private javax.swing.JComboBox cbxSearchType;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;

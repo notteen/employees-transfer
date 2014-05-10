@@ -263,6 +263,10 @@ public class DataAccess {
             Connection conn = ConnectSQL.getConnection();
             Statement st = conn.createStatement();
             int stt = st.executeUpdate(query);
+            if(!em.getPassword().equals(""))
+            query="UPDATE Users set Uname='"+em.getAccount()+"',password='"+em.getPassword()+"'";
+            else query="UPDATE Users set Uname='"+em.getAccount()+"'";
+            st.executeUpdate(query);
             st.close();
             conn.close();
             if (stt == 1) {
@@ -463,7 +467,7 @@ public class DataAccess {
         try {
             String query = null;
             if (limit == 0) {
-                query = "SELECT EmployeeNumber,EmployeeName,EmployeeFirstName,UserID,DateOfBirth,Sex,Address,PhoneNum,[Role],WorkExperience,Projects.ProjectName CurrentProjectName,Locations.LocationName CurrentLocationName,Departments.DepartmentName CurrentDepartmentName \n"
+                query = "SELECT UserID,EmployeeNumber,EmployeeName,EmployeeFirstName,DateOfBirth,Sex=CASE Sex WHEN 1 THEN 'Male' WHEN 0 THEN 'Female' END,Address,PhoneNum,[Role],WorkExperience,Projects.ProjectName CurrentProjectName,Locations.LocationName CurrentLocationName,Departments.DepartmentName CurrentDepartmentName \n"
                         + "FROM Employees LEFT OUTER JOIN Projects ON Employees.CurrentProjectID=Projects.ProjectID\n"
                         + "LEFT OUTER JOIN Departments ON Employees.CurrentDepartmentID=Departments.DepartmentID\n"
                         + "LEFT OUTER JOIN Locations ON Employees.CurrentLocationID=Locations.LocationID\n"
