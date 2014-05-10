@@ -315,6 +315,9 @@ public class FrmAdminForm extends javax.swing.JFrame {
         jTabbedPaneAdmin.addTab("List Location", jPanel5);
 
         jPanel6.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jPanel6ComponentHidden(evt);
+            }
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jPanel6ComponentShown(evt);
             }
@@ -869,6 +872,9 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6&&jTableRequestTransfer.getSelectedRows
     }//GEN-LAST:event_btApproveActionPerformed
 
     private void jPanel6ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel6ComponentShown
+        btAdd.setEnabled(false);
+        btDelete.setEnabled(false);
+        btEdit.setEnabled(false);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         DataAccess da=new DataAccess();
         try {
@@ -888,7 +894,6 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6&&jTableRequestTransfer.getSelectedRows
         btAdd.setEnabled(true);
         btDelete.setEnabled(true);
         btEdit.setEnabled(true);
-
     }//GEN-LAST:event_jPanel7ComponentHidden
 
     private void jTableRequestTransferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableRequestTransferMouseClicked
@@ -901,6 +906,13 @@ if(jTabbedPaneAdmin.getSelectedIndex()==6&&jTableRequestTransfer.getSelectedRows
        }
        
     }//GEN-LAST:event_jTableRequestTransferMouseClicked
+
+    private void jPanel6ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel6ComponentHidden
+        btAdd.setEnabled(true);
+        btDelete.setEnabled(true);
+        btEdit.setEnabled(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6ComponentHidden
 
     /**
      * @param args the command line arguments
