@@ -66,6 +66,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
             //lbUname.setVisible(false);
             //lbPassword.setVisible(false);
             txtUserName.setText(emp.getAccount());
+            System.out.println(lbUserID.getText()+"");
 //            txtUserName.setVisible(false);
 //            txtPassword.setVisible(false);
             txtAddress.setText(emp.getAddress());
@@ -490,6 +491,7 @@ public class FrmModifyEmployee extends javax.swing.JFrame {
        if(modifyMode==edit){
         if(empBO.updateEmployee(emp))
        {
+           
            parent.refresh();
            JOptionPane.showMessageDialog(this,"Update employee successful");
            this.dispose();

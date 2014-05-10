@@ -619,7 +619,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btSearchActionPerformed
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
-        if(jTabbedPaneAdmin.getSelectedIndex()==0){
+         if(jTabbedPaneAdmin.getSelectedIndex()==0){
             modifyEmp=new FrmModifyEmployee(add,-1);
             modifyEmp.setParent(this);
             modifyEmp.setVisible(true);
@@ -649,6 +649,7 @@ public class FrmAdminForm extends javax.swing.JFrame {
             modifyLoc.setVisible(true);
             modifyLoc.setTitle("Add location");
         }
+        
         
     }//GEN-LAST:event_btAddActionPerformed
 
